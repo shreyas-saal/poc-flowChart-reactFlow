@@ -1,0 +1,85 @@
+#canvasParent {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+}
+
+#btnParent {
+    padding: 10px;
+}
+
+.btn {
+    background-color: #02A6FF;
+    height: 30px;
+    width: 100px;
+    font-size: 14px;
+    border: black 1px solid;
+    line-height: 22px;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.circleCustom {
+    border-radius: 50%;
+    background: #e88489;
+    border: #F5222D;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.rectCustom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    width: 100px;
+    height: 30px;
+}
+
+.labelParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.btnDisabled {
+    background-color: gray;
+    opacity: 0.6;
+}
+
+.react-flow__handle {
+    visibility: hidden;
+}
+
+.circleCustomIcon {
+    border-radius: 50%;
+    background: #ef646b;
+    border: 1px solid #ff000d;
+    width: 15px;
+    height: 15px;
+    margin-left: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.react-flow__node.blue {
+    background: #E6F7FF;
+    border: 1px solid #02A6FF;
+}
+
+.react-flow__node.green {
+    background: #E1F2E9;
+    border: 1px solid #38BF89;
+}
+
+.react-flow__node.yellow {
+    background: #FEFFE6;
+    border: 1px solid #FFD666;
+}
