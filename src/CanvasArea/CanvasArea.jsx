@@ -107,14 +107,16 @@ function CanvasArea() {
   };
  
   const handleApplyTransitions = () => {
-      setEdges((eds) =>
-        addEdge({ 
+      setEdges([
+        ...edges,
+        {
             id: 'e' + transitionProps.transitionFrom + '-' + transitionProps.transitionTo,
             source: '' + transitionProps.transitionFrom,
             target: '' + transitionProps.transitionTo,
             type: 'floating',
-            markerEnd: { type: MarkerType.ArrowClosed, color: 'black' } }, eds)
-      );
+            markerEnd: { type: MarkerType.ArrowClosed, color: 'black' },
+        }
+    ]);
     setOpenTransitionModal(false);
   };
 
