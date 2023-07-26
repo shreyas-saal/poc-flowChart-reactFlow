@@ -27,11 +27,11 @@ const edgeTypes = {
 };
 
 const initialNodes = [
-  { id: 'start', position: { x: 0, y: 10 }, data: { label: 'Start' }, type: 'custom', className: 'circleCustom green' },
-  { id: 'submit', position: { x: 100, y: 20 }, className: 'rectCustom yellow', data: { label: <div className='labelParent'><span>Submit</span><span className='circleCustomIcon'>i</span></div> }, type: 'custom' },
-  { id: 'draft',  position: { x: 300, y: 22 }, className: 'rectCustom blue', data: { label: 'Draft' }, type: 'custom' },
-  { id: 'publish', position: { x: 400, y: 300 }, className: 'rectCustom blue', data: { label: 'Publish' }, type: 'custom', },
-  { id: 'end', position: { x: 445, y: 400 }, data: { label: 'End' }, type: 'custom', className: 'circleCustom circleRed' },
+//   { id: 'start', position: { x: 0, y: 10 }, data: { label: 'Start' }, type: 'custom', className: 'circleCustom green' },
+//   { id: 'submit', position: { x: 100, y: 20 }, className: 'rectCustom yellow', data: { label: <div className='labelParent'><span>Submit</span><span className='circleCustomIcon'>i</span></div> }, type: 'custom' },
+//   { id: 'draft',  position: { x: 300, y: 22 }, className: 'rectCustom blue', data: { label: 'Draft' }, type: 'custom' },
+//   { id: 'publish', position: { x: 400, y: 300 }, className: 'rectCustom blue', data: { label: 'Publish' }, type: 'custom', },
+//   { id: 'end', position: { x: 445, y: 400 }, data: { label: 'End' }, type: 'custom', className: 'circleCustom circleRed' },
 ];
 
 const style = {
@@ -47,8 +47,8 @@ const style = {
 };
 
 const initialEdges = [
-    { id: 'estart-submit', source: 'start', target: 'submit', type: 'floating', markerEnd: {type: MarkerType.ArrowClosed, color: 'black'}},
-    { id: 'esubmit-draft', source: 'submit', target: 'draft', type: 'floating', markerEnd: {type: MarkerType.ArrowClosed, color: 'black'}},
+    // { id: 'estart-submit', source: 'start', target: 'submit', type: 'floating', markerEnd: {type: MarkerType.ArrowClosed, color: 'black'}},
+    // { id: 'esubmit-draft', source: 'submit', target: 'draft', type: 'floating', markerEnd: {type: MarkerType.ArrowClosed, color: 'black'}},
 ];
 
 function CanvasArea() {
@@ -85,14 +85,33 @@ function CanvasArea() {
     setOpenStateModal(true);
   };
  
+  const calculateY = () => {
+    if (((nodes.length) % 5 === 0) || ((nodes.length) % 5 === 5)) {
+        return nodes[nodes.length - 1].position.y + 100;
+    } else {
+        return nodes[nodes.length - 1].position.y;
+    }
+  }
+
+  const calculateX = () => {
+    const number = nodes.length;
+    if (number === 5 || number === 10 || number === 15) {
+        return nodes[nodes.length - 1].position.x;
+    } else if ((number >= 1 && number < 5) || (number > 10 && number < 15)) {
+        return nodes[nodes.length - 1].position.x + 100;
+    } else {
+        return nodes[nodes.length - 1].position.x - 100;
+    }
+  }
+  
   const handleApplyState = () => {
     setNodes([
         ...nodes,
         {
             id: stateProps.stateName,
             position: {
-                x: nodes[nodes.length - 2].position.x + 100,
-                y: 22,
+                x: nodes.length ? calculateX() : 0,
+                y: nodes.length ? calculateY() : 10,
             },
             // ...checkboxes.start && {sourcePosition: 'right'},
             data: { label: stateProps.stateName },
